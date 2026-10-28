@@ -1,85 +1,334 @@
-
 # Real-Time Voice-Based Alert Classification Using Python and Arduino
 
-A prototype that listens for spoken public announcements, assigns a rule-based
-priority, signals an Arduino Uno using LEDs, records recognized announcements
-to CSV, and displays the history in a Streamlit dashboard.
+A real-time voice-based alert classification system that processes spoken announcements, assigns priority levels using rule-based text classification, controls Arduino LED indicators, and records alerts for monitoring through a Streamlit dashboard.
 
-## Project structure
+## Overview
 
-- `arduino/AIoT_Public_Alert_Gateway.ino`: Arduino LED controller
-- `python_test/control.py`: microphone, speech recognition, logging and serial communication
-- `python_test/classifier.py`: English keyword-based priority classification
-- `python_test/test_classifier.py`: automated classification tests
-- `python_test/dashboard.py`: Streamlit dashboard
-- `python_test/requirements.txt`: Python dependencies
-- `python_test/alert_history.csv`: generated automatically after the first logged alert
+The system combines Python, speech recognition, Arduino Uno, and a web-based dashboard to demonstrate how spoken announcements can be converted into actionable priority alerts.
 
-## Hardware wiring
+When a user speaks an announcement, the Python application converts the speech into text, classifies its priority, records the result in a CSV file, and sends a corresponding command to the Arduino over serial communication.
 
-Use an Arduino Uno and three LEDs. Each LED requires a series resistor,
-typically 220–330 ohms.
+The Arduino then activates the LED associated with the assigned priority.
+
+## Key Features
+
+- **Voice input:** Captures spoken announcements through a microphone.
+- **Speech-to-text:** Uses the SpeechRecognition library with Google's online speech recognition service.
+- **Priority classification:** Assigns HIGH, MEDIUM, or LOW priority using rule-based phrase matching.
+- **Arduino integration:** Communicates with an Arduino Uno through serial commands.
+- **Hardware indicators:** Uses separate LEDs to represent the three priority levels.
+- **Alert logging:** Stores timestamps, recognized announcements, and priority levels in a CSV file.
+- **Interactive dashboard:** Displays alert statistics, priority distribution, and recent announcements.
+- **Search and filtering:** Supports searching recorded announcements and filtering by priority.
+- **CSV export:** Allows dashboard records to be downloaded for further analysis.
+- **Automated testing:** Includes unit tests and evaluation scripts for checking classifier behavior.
+
+## System Architecture
+
+```text
+Spoken Announcement
+        |
+        v
+Microphone Input
+        |
+        v
+Python Speech Recognition
+        |
+        v
+Recognized Text
+        |
+        v
+Rule-Based Classification
+        |
+        +----------------------+
+        |                      |
+        v                      v
+CSV Alert Logging       Serial Communication
+                               |
+                               v
+                          Arduino Uno
+                               |
+                    +----------+----------+
+                    |          |          |
+                    v          v          v
+                 HIGH LED   MEDIUM LED   LOW LED
+
+Python Alert History
+        |
+        v
+Streamlit Dashboard
+        |
+        v
+Statistics, Search, Filtering
+and CSV Export
+```
+
+## Technologies Used
+
+| Component | Technology |
+|---|---|
+| Programming language | Python |
+| Hardware controller | Arduino Uno |
+| Embedded programming | Arduino C/C++ |
+| Speech recognition | SpeechRecognition |
+| Serial communication | PySerial |
+| Dashboard | Streamlit |
+| Data handling | Pandas |
+| Data storage | CSV |
+| Testing | Python unittest |
+
+## Project Structure
+
+```text
+Real-Time Voice-Based Alert Classification/
+|
+|-- README.md
+|-- .gitignore
+|
+|-- arduino/
+|   |-- AIoT_Public_Alert_Gateway/
+|       |-- AIoT_Public_Alert_Gateway.ino
+|
+|-- python_test/
+    |-- README.md
+    |-- classifier.py
+    |-- control.py
+    |-- dashboard.py
+    |-- test_classifier.py
+    |-- evaluate_classifier.py
+    |-- evaluate_unseen_test.py
+    |-- evaluation_dataset.csv
+    |-- unseen_test_set.csv
+    |-- unseen_test_results.csv
+    |-- requirements.txt
+```
+
+## Hardware Requirements
+
+- Arduino Uno
+- USB cable for Arduino communication
+- Computer with a microphone
+- Three LEDs for HIGH, MEDIUM, and LOW priorities
+- Appropriate current-limiting resistors
+- Breadboard and jumper wires
+
+An optional buzzer module is supported by the Arduino sketch but is disabled by default.
+
+### LED Connections
 
 | Component | Arduino pin |
 |---|---|
-| HIGH-priority LED anode through resistor | D8 |
-| MEDIUM-priority LED anode through resistor | D9 |
-| LOW-priority LED anode through resistor | D10 |
-| LED cathodes | GND |
-| Optional compatible buzzer | D11 |
+| HIGH priority LED | D8 |
+| MEDIUM priority LED | D9 |
+| LOW priority LED | D10 |
+| Optional buzzer | D11 |
 
-The optional buzzer is disabled by default.
+Connect each LED with an appropriate current-limiting resistor. Connect the LED cathodes to GND.
 
-## Setup
+## Software Requirements
 
-1. Install Python, VS Code and Arduino IDE.
-2. Upload `arduino/AIoT_Public_Alert_Gateway.ino` to the Arduino Uno.
-3. Close Arduino Serial Monitor.
-4. Open the `python_test` folder in the VS Code terminal.
-5. Install dependencies:
+- Python 3.11 or a compatible Python version
+- Arduino IDE
+- Git
+- A microphone
+- Internet access for Google's online speech recognition service
+- A supported serial port for the Arduino
 
-   `python -m pip install -r requirements.txt`
+## Installation and Setup
 
-6. In `control.py`, set `ARDUINO_PORT` to the port shown in Arduino IDE.
-7. Run the automated tests:
+### 1. Clone the Repository
 
-   `python -m unittest -v`
+```bash
+git clone https://github.com/shabnamnisha7/voice-alert-classification-system.git
+cd voice-alert-classification-system
+```
 
-8. Start the voice controller:
+### 2. Create a Virtual Environment
 
-   `python control.py`
+```bash
+python -m venv .venv
+```
 
-9. Open a second terminal in `python_test` and run:
+Activate it on Windows:
 
-   `python -m streamlit run dashboard.py`
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-10. Open the local URL printed by Streamlit, usually `http://localhost:8501`.
+### 3. Install Dependencies
 
-## How it works
+```bash
+python -m pip install -r python_test/requirements.txt
+```
 
-1. The microphone captures a spoken announcement.
-2. Google's online speech-recognition service transcribes it in Indian English.
-3. `classifier.py` checks the transcript against the HIGH and MEDIUM phrase lists.
-4. Python sends `H`, `M`, or `L` to the Arduino over serial.
-5. The Arduino turns on the corresponding LED.
-6. Python records the transcript, timestamp and priority in the CSV log.
-7. Streamlit displays the saved alert history.
+If microphone access fails because PyAudio is unavailable, resolve the PyAudio installation issue for your Python and operating system before running the application.
 
-## Expand the vocabulary
+### 4. Upload the Arduino Sketch
 
-Edit `HIGH_PHRASES` and `MEDIUM_PHRASES` in `classifier.py`.
+1. Open `arduino/AIoT_Public_Alert_Gateway/AIoT_Public_Alert_Gateway.ino` in Arduino IDE.
+2. Connect the Arduino Uno using USB.
+3. Select the correct board and serial port.
+4. Upload the sketch.
+5. Close the Arduino Serial Monitor before running the Python application, because the serial port generally cannot be shared by both programs.
 
-- HIGH: immediate danger, fire, gas leak, medical emergency, violence,
-  natural disaster, serious accident and other urgent hazards.
-- MEDIUM: warnings, maintenance, road closures, service interruptions
-  and other non-immediate issues.
-- LOW: announcements that do not match either phrase list.
+### 5. Configure the Serial Port
+
+Open `python_test/control.py` and check these settings:
+
+```python
+ARDUINO_PORT = "COM3"
+BAUD_RATE = 9600
+LANGUAGE = "en-IN"
+```
+
+Replace `COM3` with the port assigned to your Arduino if necessary.
+
+### 6. Run the Voice Classification Application
+
+From the repository root:
+
+```powershell
+python python_test/control.py
+```
+
+Allow microphone access when prompted. Speak a short announcement and check the printed classification, CSV log, and corresponding LED.
+
+The application supports the configured exit phrases `quit program`, `exit program`, and `stop listening`.
+
+### 7. Launch the Dashboard
+
+Open a second terminal, activate the same virtual environment, and run:
+
+```powershell
+python -m streamlit run python_test/dashboard.py
+```
+
+Open the local URL displayed in the terminal by Streamlit.
+
+The dashboard reads the alert history from `python_test/alert_history.csv`. The file is generated by the voice application and is intentionally excluded from Git tracking to avoid publishing local announcement logs.
+
+## Dashboard Features
+
+The dashboard uses a responsive Bento Grid-style layout and includes:
+
+- Project title and system overview
+- Total alert count and priority metrics
+- Priority distribution visualizations
+- HIGH priority percentage and other summary statistics
+- Recent alert records
+- Priority-based filtering
+- Announcement search
+- Newest-first sorting
+- CSV download
+- Light and dark appearance support where available
+
+For meaningful live monitoring, run the voice application first so that the alert history file exists and contains records.
+
+## Classification Logic
+
+The classifier in `python_test/classifier.py` uses predefined phrases and keywords to assign one of three priority levels.
+
+| Priority | Meaning | System response |
+|---|---|---|
+| HIGH | Urgent or emergency-related announcement recognized by configured rules | HIGH LED activated |
+| MEDIUM | Announcement matching the configured medium-priority rules | MEDIUM LED activated |
+| LOW | Announcement matching the configured low-priority rules or the classifier's fallback behavior | LOW LED activated |
+
+The exact classification depends on the rules defined in the source code.
+
+**Important:** This project uses rule-based classification, not a trained machine learning model. It is a prototype for demonstrating speech processing, rule-based decision-making, serial communication, and hardware indication. It is not a certified emergency warning system.
+
+## Arduino Serial Protocol
+
+The Python application sends priority commands to the Arduino over a serial connection at 9600 baud.
+
+| Command | Action |
+|---|---|
+| `H` | Activate HIGH priority indication |
+| `M` | Activate MEDIUM priority indication |
+| `L` | Activate LOW priority indication |
+| `Q` | Turn off the alert indicators |
+
+The Arduino sketch also sends acknowledgement messages for the supported commands.
+
+## Testing and Evaluation
+
+The repository includes separate testing and evaluation tools.
+
+### Unit Tests
+
+Run the classifier tests from the repository root:
+
+```powershell
+python -m unittest discover -s python_test -p "test_classifier.py" -v
+```
+
+The project has previously passed 14 unit tests. Run the tests again after changing the classifier to confirm its current behavior.
+
+### Evaluation Dataset
+
+Run the primary classifier evaluation:
+
+```powershell
+python python_test/evaluate_classifier.py
+```
+
+The included evaluation dataset contains 60 labeled examples, with 20 examples per priority class. A previous evaluation reported 60 correct classifications out of 60 on this dataset.
+
+This result measures performance on the included dataset only. It does not establish real-world accuracy.
+
+### Unseen Test Set
+
+Run the separate evaluation script:
+
+```powershell
+python python_test/evaluate_unseen_test.py
+```
+
+The project includes an exploratory test set and previously generated results. These files can be used to inspect classification behavior beyond the primary dataset, but they are not an independently validated benchmark.
 
 ## Limitations
 
-The classifier is rule-based, not a trained AI model. Speech recognition
-requires internet access and can mishear speech. Keyword matching can miss
-unlisted phrases or produce false positives. Negation handling is limited.
+- Classification depends on manually defined phrases and keywords.
+- Unfamiliar wording, accents, background noise, and speech recognition errors may produce incorrect classifications.
+- Online speech recognition requires internet access.
+- The serial port must be configured correctly.
+- The dashboard depends on the CSV alert history generated by the Python application.
+- Evaluation results on small, predefined datasets may not reflect real-world performance.
+- The system has not been validated for use as a life-safety or emergency communication device.
 
-This is an educational prototype, not a certified public-safety system.
-Do not rely on it as the sole means of communicating real emergencies.
+## Future Improvements
+
+- Improve classification rules using broader, independently labeled datasets.
+- Add confidence scores and explicit handling of uncertain speech recognition.
+- Introduce a trained text classification model and compare it with the rule-based baseline.
+- Add serial connection status and hardware acknowledgement monitoring to the dashboard.
+- Improve error handling for microphone, network, and Arduino connection failures.
+- Evaluate the classifier on independently collected speech samples under different noise conditions.
+- Add persistent configuration for serial ports and classification thresholds.
+
+## Learning Outcomes
+
+This project demonstrates practical integration of:
+
+- Python application development
+- Speech recognition
+- Text processing and rule-based classification
+- Serial communication between a computer and a microcontroller
+- Arduino GPIO control
+- CSV-based data logging
+- Streamlit dashboard development
+- Unit testing and dataset-based evaluation
+- Git and GitHub version control
+
+## Author
+
+**Shabnam Nisha**
+
+B.Tech Electronics and Communication Engineering
+
+GitHub: [@shabnamnisha7](https://github.com/shabnamnisha7)
+
+## License
+
+No license has been specified yet. Unless a license is added to the repository, reuse and redistribution remain subject to applicable copyright law.
