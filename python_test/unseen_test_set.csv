@@ -1,0 +1,31 @@
+text,expected_priority
+A passenger has collapsed and is not responding to anyone.,HIGH
+There is a strong smell of gas coming from the kitchen area.,HIGH
+A student has been electrocuted in the electronics laboratory.,HIGH
+Water is rushing into the basement and electrical outlets are sparking.,HIGH
+A child is choking near the cafeteria entrance.,HIGH
+Part of the ceiling has fallen and people are trapped underneath.,HIGH
+A chemical container broke and several workers are coughing badly.,HIGH
+Smoke is filling the corridor and the nearest exit is blocked.,HIGH
+A vehicle has hit pedestrians outside the main gate.,HIGH
+Someone is threatening people with a knife near the reception desk.,HIGH
+The east wing will lose electricity for approximately one hour.,MEDIUM
+The campus shuttle is running behind its usual schedule.,MEDIUM
+Heavy rain may disrupt afternoon bus services.,MEDIUM
+The lift is unavailable while technicians carry out an inspection.,MEDIUM
+"A water pipe has burst, but the affected corridor has been closed off.",MEDIUM
+The science laboratory will remain closed during equipment servicing.,MEDIUM
+Gusty conditions are forecast for the campus later today.,MEDIUM
+The library will close early for a planned electrical shutdown.,MEDIUM
+Vehicles must use the south entrance while the north gate is repaired.,MEDIUM
+The auditorium sound system is being serviced and will be unavailable.,MEDIUM
+The photography club will meet in Room 204 at four o'clock.,LOW
+Students may collect their identity cards from the administration office.,LOW
+The cafeteria has published its menu for next week.,LOW
+Registration for the annual cultural festival is now open.,LOW
+A guest lecture about robotics is scheduled for tomorrow morning.,LOW
+The sports committee has revised the practice timetable.,LOW
+Unclaimed belongings can be collected from the reception counter.,LOW
+The computer laboratory will open at its regular time today.,LOW
+Please submit your project abstracts before Monday evening.,LOW
+The library has added several new engineering textbooks.,LOW

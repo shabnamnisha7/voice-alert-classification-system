@@ -1,0 +1,61 @@
+text,expected_priority
+"Smoke is spreading through the east wing and people are leaving the building",HIGH
+"A passenger is unconscious and not responding to staff",HIGH
+"Flames are visible near the electrical control panel",HIGH
+"A strong gas leak smell is coming from the laboratory",HIGH
+"Several people are injured after the ceiling collapsed",HIGH
+"Someone has collapsed and is not breathing",HIGH
+"Gunshots were heard inside the station",HIGH
+"The river has overflowed and water is entering nearby homes",HIGH
+"A chemical container has ruptured and fumes are spreading",HIGH
+"An employee is trapped beneath fallen construction material",HIGH
+"An electrical fire has started in the storage room",HIGH
+"An ambulance is urgently required at the main entrance",HIGH
+"The bridge structure has partially collapsed",HIGH
+"A person is having severe chest pain and struggling to breathe",HIGH
+"Thick smoke is coming from the underground parking area",HIGH
+"A violent confrontation is taking place near the gate",HIGH
+"The building is shaking after a strong earthquake",HIGH
+"Multiple people have been hurt in a serious road collision",HIGH
+"Fuel is leaking from the damaged tanker",HIGH
+"Everyone must evacuate immediately because the building is unsafe",HIGH
+"Bus services are delayed because of heavy traffic",MEDIUM
+"Routine inspection of the backup generator begins this afternoon",MEDIUM
+"The east entrance will remain closed for scheduled repairs",MEDIUM
+"Water supply will be interrupted for two hours tomorrow",MEDIUM
+"Train services are running behind schedule",MEDIUM
+"A minor traffic collision has been reported with no serious injuries",MEDIUM
+"Technicians are repairing the public announcement system",MEDIUM
+"Strong winds are expected later this evening",MEDIUM
+"The lift is temporarily unavailable while maintenance is carried out",MEDIUM
+"Classes in block C will start thirty minutes late",MEDIUM
+"Scheduled electrical maintenance will affect the second floor",MEDIUM
+"Parking spaces near the main gate are temporarily unavailable",MEDIUM
+"A routine fire alarm inspection is taking place today",MEDIUM
+"Some network services may be unavailable during the upgrade",MEDIUM
+"The north road will be closed for resurfacing work",MEDIUM
+"Water pressure may be lower during pipeline maintenance",MEDIUM
+"The afternoon shuttle service has been rescheduled",MEDIUM
+"A weather advisory warns of possible localised flooding",MEDIUM
+"Minor damage has been reported to a roadside sign",MEDIUM
+"The meeting has been moved to the conference room",MEDIUM
+"The library will close at its usual time today",LOW
+"The student club meeting is scheduled for Friday",LOW
+"Visitors should register at the reception desk",LOW
+"The cafeteria menu has been updated for next week",LOW
+"Please return borrowed equipment before leaving campus",LOW
+"The annual cultural programme begins at six in the evening",LOW
+"New parking permits are available from the administration office",LOW
+"The seminar registration deadline is approaching",LOW
+"Staff will receive updated ID cards next month",LOW
+"The sports competition has been postponed until Saturday",LOW
+"The emergency management committee will review its annual plan",LOW
+"The fire safety team is preparing a presentation for students",LOW
+"The building maintenance team will publish its monthly report",LOW
+"Students are practising the evacuation procedure as part of a drill",LOW
+"This is a scheduled communication test, and no action is required",LOW
+"No fire has been reported and normal operations continue",LOW
+"The security team completed its routine patrol without incident",LOW
+"The first aid workshop covers basic injury prevention",LOW
+"The campus newsletter will be distributed tomorrow morning",LOW
+"An emergency preparedness meeting is planned for next week",LOW

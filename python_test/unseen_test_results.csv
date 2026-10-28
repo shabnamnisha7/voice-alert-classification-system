@@ -1,0 +1,31 @@
+text,expected_priority,predicted_priority,correct
+A passenger has collapsed and is not responding to anyone.,HIGH,LOW,False
+There is a strong smell of gas coming from the kitchen area.,HIGH,LOW,False
+A student has been electrocuted in the electronics laboratory.,HIGH,HIGH,True
+Water is rushing into the basement and electrical outlets are sparking.,HIGH,LOW,False
+A child is choking near the cafeteria entrance.,HIGH,LOW,False
+Part of the ceiling has fallen and people are trapped underneath.,HIGH,HIGH,True
+A chemical container broke and several workers are coughing badly.,HIGH,LOW,False
+Smoke is filling the corridor and the nearest exit is blocked.,HIGH,HIGH,True
+A vehicle has hit pedestrians outside the main gate.,HIGH,LOW,False
+Someone is threatening people with a knife near the reception desk.,HIGH,LOW,False
+The east wing will lose electricity for approximately one hour.,MEDIUM,LOW,False
+The campus shuttle is running behind its usual schedule.,MEDIUM,LOW,False
+Heavy rain may disrupt afternoon bus services.,MEDIUM,LOW,False
+The lift is unavailable while technicians carry out an inspection.,MEDIUM,LOW,False
+"A water pipe has burst, but the affected corridor has been closed off.",MEDIUM,LOW,False
+The science laboratory will remain closed during equipment servicing.,MEDIUM,LOW,False
+Gusty conditions are forecast for the campus later today.,MEDIUM,LOW,False
+The library will close early for a planned electrical shutdown.,MEDIUM,LOW,False
+Vehicles must use the south entrance while the north gate is repaired.,MEDIUM,LOW,False
+The auditorium sound system is being serviced and will be unavailable.,MEDIUM,LOW,False
+The photography club will meet in Room 204 at four o'clock.,LOW,LOW,True
+Students may collect their identity cards from the administration office.,LOW,LOW,True
+The cafeteria has published its menu for next week.,LOW,LOW,True
+Registration for the annual cultural festival is now open.,LOW,LOW,True
+A guest lecture about robotics is scheduled for tomorrow morning.,LOW,LOW,True
+The sports committee has revised the practice timetable.,LOW,LOW,True
+Unclaimed belongings can be collected from the reception counter.,LOW,LOW,True
+The computer laboratory will open at its regular time today.,LOW,LOW,True
+Please submit your project abstracts before Monday evening.,LOW,LOW,True
+The library has added several new engineering textbooks.,LOW,LOW,True
